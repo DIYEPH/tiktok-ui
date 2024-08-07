@@ -12,6 +12,7 @@
     //Default layout
     --default-layout-header-height: 60px;
     --default-layout-width:1150px;
+    --default-layout-horizontal-space:24px;
 
 
 }
@@ -35,6 +36,8 @@ body {
 button,input,[tabindex]{
     outline: none;
     border: none;
+    color: var(--text-color);
+
 }
 a[href]{
     color: var(--text-color);

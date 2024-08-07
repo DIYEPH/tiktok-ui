@@ -25,6 +25,21 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tieensg Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -46,6 +61,10 @@ function Header() {
     }, 0);
   }, []);
 
+  //handle logic
+  const handleMenuChange = (menuItem) => {
+    console.log(menuItem);
+  };
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -90,7 +109,7 @@ function Header() {
           {/* <Button rounded className={cx('custom-login')}> */}
           <Button primary>Log in</Button>
 
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>

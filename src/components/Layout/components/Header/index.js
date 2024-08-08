@@ -10,6 +10,8 @@ import {
   faSignOut,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 import {
   InboxIcon,
   MessageIcon,
@@ -93,7 +95,9 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <img src={images.logo} alt="Tiktok" />
+        <Link to={routesConfig.home} className={cx('logo-link')}>
+          <img src={images.logo} alt="Tiktok" />
+        </Link>
         <Search />
         <div className={cx('actions')}>
           {currentUser ? (

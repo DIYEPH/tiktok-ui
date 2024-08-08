@@ -55,8 +55,11 @@
     font-size: 1.4rem;
     font-weight: 600;
     color: var(--white);
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     background-color: var(--primary);
+}
+.logo-link {
+    display: flex;
 }
 
 .user-avatar {

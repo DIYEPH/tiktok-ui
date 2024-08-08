@@ -6,12 +6,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+
+import * as searchServices from '~/apiServices/searchService';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
-import styles from './Search.module.scss';
 import { useDebounce } from '~/hooks';
-import * as searchServices from '~/apiServices/searchService';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
   const [loading, setLoading] = useState(false);
+
   const debounced = useDebounce(searchValue, 500);
 
   const inputRef = useRef();
@@ -60,6 +62,8 @@ function Search() {
   };
 
   return (
+    // Using a wrapper <div> tag around the reference element solves
+    // this by creating a new parentNode context.
     <div>
       <HeadlessTippy
         interactive
@@ -100,6 +104,7 @@ function Search() {
               icon={faSpinner}
             />
           )}
+
           <button
             className={cx('search-btn')}
             onMouseDown={(e) => e.preventDefault()}

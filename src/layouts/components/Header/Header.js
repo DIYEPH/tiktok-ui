@@ -11,20 +11,21 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+
 import config from '~/config';
+import Button from '~/components/Button';
+import styles from './Header.module.scss';
+import images from '~/assets/images';
+import Menu from '~/components/Popper/Menu';
 import {
   InboxIcon,
   MessageIcon,
   UploadIcon,
 } from '~/components/Icons';
 import Image from '~/components/Image';
-import Tippy from '@tippyjs/react';
 import Search from '../Search';
-import styles from './Header.module.scss';
-import images from '~/assets/images';
-import Button from '~/components/Button';
-import Menu from '~/components/Popper/Menu';
-import 'tippy.js/dist/tippy.css';
 
 const cx = classNames.bind(styles);
 
@@ -42,154 +43,8 @@ const MENU_ITEMS = [
         },
         {
           type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-
-        {
-          type: 'language',
-          code: 'en',
-          title: 'English',
-        },
-        {
-          type: 'language',
           code: 'vi',
-          title: 'Tieensg Việt',
+          title: 'Tiếng Việt',
         },
       ],
     },
@@ -208,16 +63,21 @@ const MENU_ITEMS = [
 function Header() {
   const currentUser = true;
 
-  //handle logic
+  // Handle logic
   const handleMenuChange = (menuItem) => {
-    console.log(menuItem);
+    switch (menuItem.type) {
+      case 'language':
+        // Handle change language
+        break;
+      default:
+    }
   };
 
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faUser} />,
-      title: 'View Profile',
-      to: '/profile',
+      title: 'View profile',
+      to: '/@hoaa',
     },
     {
       icon: <FontAwesomeIcon icon={faCoins} />,
@@ -227,7 +87,7 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faGear} />,
       title: 'Settings',
-      to: '/setting',
+      to: '/settings',
     },
     ...MENU_ITEMS,
     {
@@ -244,7 +104,9 @@ function Header() {
         <Link to={config.routes.home} className={cx('logo-link')}>
           <img src={images.logo} alt="Tiktok" />
         </Link>
+
         <Search />
+
         <div className={cx('actions')}>
           {currentUser ? (
             <>
@@ -280,10 +142,10 @@ function Header() {
           ) : (
             <>
               <Button text>Upload</Button>
-              {/* <Button rounded className={cx('custom-login')}> */}
               <Button primary>Log in</Button>
             </>
           )}
+
           <Menu
             items={currentUser ? userMenu : MENU_ITEMS}
             onChange={handleMenuChange}
